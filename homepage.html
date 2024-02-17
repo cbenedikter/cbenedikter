@@ -3,16 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SE DEmo</title>
+<title>SE Demo</title>
 <style>
   body {
     background-color: #14143c;
     color: white;
     font-family: Arial, sans-serif;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Use flexbox layout */
+    min-height: 100vh; /* Ensure full viewport height */
   }
-  .container {
-    text-align: center;
-    margin-top: 20vh;
+  .sidebar {
+    background-color: #333; /* Sidebar background color */
+    width: 100px; /* Adjust sidebar width as needed */
+    padding: 20px; /* Add padding to buttons */
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Arrange buttons vertically */
+  }
+  .button {
+    background-color: #555; /* Button background color */
+    color: white; /* Button text color */
+    padding: 10px; /* Adjust button padding */
+    margin-bottom: 10px; /* Add space between buttons */
+    text-align: center; /* Center button text */
+    text-decoration: none; /* Remove default link underline */
+    border: none; /* Remove button border */
+  }
+  .button:hover {
+    background-color: #777; /* Change button background color on hover */
+  }
+  .content {
+    flex: 1; /* Fill remaining space in flex container */
+    padding: 20px; /* Add padding to content area */
   }
 </style>
 
@@ -28,8 +51,16 @@
 </script>
 </head>
 <body>
-  <div class="container">
-    <h1>OneSignal Demo</h1>
+  <div class="sidebar">
+    <a href="#" class="button">Button 1</a>
+    <a href="#" class="button">Button 2</a>
+    <a href="#" class="button">Button 3</a>
+    <!-- Add more buttons as needed -->
+  </div>
+  <div class="content">
+    <!-- Your main content goes here -->
+    <h1>OneSignal Demo Website</h1>
+    <p>This is where your main content goes.</p>
   </div>
 </body>
 </html>
