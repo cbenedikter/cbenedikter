@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hello World Page</title>
+<style>
+  body {
+    background-color: #14143c;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    text-align: center;
+    margin-top: 20vh;
+  }
+</style>
+
+  <! OneSignal JavaScript SDK>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(function(OneSignal) {
+    OneSignal.init({
+      appId: "cf532c5e-5be2-4b00-ab6d-3d3d72ca9124",
+    });
+  });
+</script>
+</head>
+<body>
+  <div class="container">
+    <h1>OneSignal Demo</h1>
+  </div>
+</body>
+</html>
