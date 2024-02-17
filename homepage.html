@@ -22,16 +22,18 @@
     flex-direction: column; /* Arrange buttons vertically */
   }
   .button {
-    background-color: #555; /* Button background color */
+    background-color: #14143c; /* Button background color */
     color: white; /* Button text color */
     padding: 10px; /* Adjust button padding */
     margin-bottom: 10px; /* Add space between buttons */
     text-align: center; /* Center button text */
     text-decoration: none; /* Remove default link underline */
-    border: none; /* Remove button border */
+    border: 1px #ffffff; /* Remove button border */
+    border-radius: 5px;
   }
   .button:hover {
-    background-color: #777; /* Change button background color on hover */
+    background-color: #ffffff; /* Change button background color on hover */
+    color: #E53B4D; /* Button text color */
   }
   .content {
     flex: 1; /* Fill remaining space in flex container */
@@ -52,8 +54,8 @@
 </head>
 <body>
   <div class="sidebar">
-    <a href="#" class="button">Button 1</a>
-    <a href="#" class="button">Button 2</a>
+    <a href="#" class="button">Sign In</a>
+    <a href="#" class="button">Create Account</a>
     <a href="#" class="button">Button 3</a>
     <!-- Add more buttons as needed -->
   </div>
