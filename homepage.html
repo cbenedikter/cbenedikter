@@ -3,48 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SE Demo</title>
+<title>OneSignal SE Demo Page</title>
 <style>
-    /* Styling for the banner */
-  .banner {
-    background-color: white; /* Set background color to white */
-    color: black; /* Set text color to black */
-    padding: 20px; /* Add padding to the banner */
-    text-align: center; /* Center-align text */
-  }
   body {
     background-color: #14143c;
     color: white;
     font-family: Arial, sans-serif;
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
+  }
+  .container {
+    text-align: center;
+    margin-top: 20vh;
+  }
+
+    /* Styling for the logo */
+    .logo {
+    max-width: 100px; /* Set maximum width of the logo */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+    /* Styling for the transparent banner */
+  .banner {
+    background-color: rgba(255, 255, 255, 0.5); /* Set background color to transparent white */
+    color: black; /* Set text color to black */
+    padding: 20px; /* Add padding to the banner */
     display: flex; /* Use flexbox layout */
-    min-height: 100vh; /* Ensure full viewport height */
+    justify-content: space-between; /* Align items to the start and end */
+    align-items: center; /* Center-align items vertically */
   }
-  .sidebar {
-    background-color: #14143c; /* Sidebar background color */
-    width: 100px; /* Adjust sidebar width as needed */
-    padding: 20px; /* Add padding to buttons */
-    display: flex; /* Use flexbox layout */
-    flex-direction: column; /* Arrange buttons vertically */
+  
+  /* Styling for the menu bar button */
+  .menu-button {
+    background-color: transparent; /* Set background color to transparent */
+    color: black; /* Set text color to black */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-size: 30px;
   }
-  .button {
-    background-color: #14143c; /* Button background color */
-    color: white; /* Button text color */
-    padding: 10px; /* Adjust button padding */
-    margin-bottom: 10px; /* Add space between buttons */
-    text-align: center; /* Center button text */
-    text-decoration: none; /* Remove default link underline */
-    border: 5px #ffffff; /* Remove button border */
-    border-radius: 5px;
+  
+  
+  /* Styling for the panel */
+  .panel {
+    position: fixed; /* Fixed position so it stays in place when scrolling */
+    top: 0; /* Position at the top */
+    left: -250px; /* Move off-screen to the left */
+    width: 250px; /* Set panel width */
+    height: 100%; /* Set panel height to match viewport height */
+    background-color: rgba(255, 255, 255, 0.9); /* Set background color to transparent white */
+    transition: left 0.3s ease; /* Add transition effect */
+    z-index: 1; /* Ensure panel appears above other content */
+    padding-top: 150px;
   }
-  .button:hover {
-    background-color: #ffffff; /* Change button background color on hover */
-    color: #E53B4D; /* Button text color */
+  
+  /* Styling for the panel buttons */
+  .panel-button {
+    display: block; /* Make buttons block-level elements */
+    width: 100%; /* Set button width to fill panel */
+    padding: 15px; /* Add padding to buttons */
+    text-align: left; /* Center-align button text */
+    background-color: transparent; /* Set background color to transparent */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    color: #14143c;
+    font-size: 24px;
+    padding-bottom: 25px;
   }
-  .content {
-    flex: 1; /* Fill remaining space in flex container */
-    padding: 20px; /* Add padding to content area */
+  
+  /* Styling for the panel buttons on hover */
+  .panel-button:hover {
+    background-color: #f0f0f0; /* Change button background color on hover */
   }
 </style>
 
@@ -58,28 +84,124 @@
     });
   });
 </script>
+
+<script>
+  // Function to toggle the panel visibility
+  function togglePanel() {
+    var panel = document.getElementById("panel");
+    if (panel.style.left === "0px") {
+      panel.style.left = "-250px"; // Move panel off-screen to the left
+    } else {
+      panel.style.left = "0px"; // Move panel on-screen
+    }
+  }
+    // Add event listener to document to collapse panel when clicking outside of it
+    document.addEventListener('click', function(event) {
+    var panel = document.getElementById("panel");
+    var targetElement = event.target; // Clicked element
+    var isPanelClicked = panel.contains(targetElement); // Check if clicked element is inside the panel
+    var isMenuButtonClicked = targetElement.classList.contains("menu-button"); // Check if menu button is clicked
+    
+    // Collapse panel if clicked element is not inside the panel and menu button is not clicked
+    if (!isPanelClicked && !isMenuButtonClicked) {
+      panel.style.left = "-250px"; // Move panel off-screen to the left
+    }
+  });
+</script>
+
+
+<script> 
+  // Menu button, on click logic
+  function handleAction() {
+    // OneSignal Outcomes
+    OneSignal.sendOutcomeWithValue("profileStatus", Completed);  
+  }
+  </script>
+
+<script>
+  // Function to handle Email collection
+  function handleLoginEmail() {
+      // Open the pop-up window
+      var popupWindow = window.open('', 'popupWindow', 'width=400,height=300');
+  
+      // Dynamically generate the HTML content for the pop-up window
+      var popupContent = `
+          <h2>Enter Your Email Address</h2>
+          <input type="text" id="emailInput" placeholder="Enter your email">
+          <button onclick="handleSubmit()">Submit</button>
+      `;
+  
+      // Write the HTML content to the pop-up window
+      popupWindow.document.write(popupContent);
+  }
+  
+  // Function to handle the submit action
+  function handleSubmit() {
+      // Get the value of the email input
+      var email = popupWindow.document.getElementById('emailInput').value;
+  
+      // Do something with the email (e.g., send it to a server, store it locally)
+      console.log("Submitted email:", email);
+      OneSignal.User.addEmail
+  
+      // Close the pop-up window
+      window.close();
+  }
+  </script>
+  
+  <script>
+    // Function to handle Phone Number collection
+    function handleLoginSms() {
+        // Open the pop-up window
+        var popupWindow = window.open('', 'popupWindow', 'width=400,height=300');
+    
+        // Dynamically generate the HTML content for the pop-up window
+        var popupContent = `
+            <h2>Enter Your Phone Number</h2>
+            <input type="text" id="smsInput" placeholder="Enter your Phone Number">
+            <button onclick="handleSubmit()">Submit</button>
+        `;
+    
+        // Write the HTML content to the pop-up window
+        popupWindow.document.write(popupContent);
+    }
+    
+    // Function to handle the submit action
+    function handleSubmit() {
+        // Get the value of the email input
+        var email = popupWindow.document.getElementById('emailInput').value;
+    
+        // Do something with the email (e.g., send it to a server, store it locally)
+        console.log("Submitted email:", email);
+        OneSignal.User.addSms
+    
+        // Close the pop-up window
+        window.close();
+    }
+    </script>
+
+
 </head>
 <body>
-  <div class="banner">
-  This is a white-colored banner.
+  <!-- Transparent banner with menu bar button -->
+<div class="banner">
+  <button class="menu-button" onclick="togglePanel()">&#9776</button>
+
 </div>
 
-  <!-- Your main content goes here -->
-<div class="content">
-  <h1>Main Content Area</h1>
-  <p>This is where your main content goes.</p>
+<!-- Panel containing login, sign up, and preferences buttons -->
+<div id="panel" class="panel">
+  <button class="panel-button">Login</button>
+  <button class="panel-button" onclick="handleLoginEmail()">Sign up Email</button>
+  <button class="panel-button" onclick="handleLoginSms()">Sign up SMS</button>
+  <button class="panel-button">Preferences</button>
+  <button class="panel-button" onclick="handleAction()">Save Profile</button>
+
+
 </div>
-  
-  <div class="sidebar">
-    <a href="#" class="button">Sign In</a>
-    <a href="#" class="button">Create Account</a>
-    <a href="#" class="button">Button 3</a>
-    <!-- Add more buttons as needed -->
-  </div>
-  <div class="content">
-    <!-- Your main content goes here -->
-    <h1>OneSignal Demo Website</h1>
-    <p>This is where your main content goes.</p>
+  <div class="container">
+    <h1>OneSignal Demo</h1>
+    <h2>A demonstration website run by OneSignal SE Team</h2>
   </div>
 </body>
 </html>
