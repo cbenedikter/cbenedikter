@@ -78,8 +78,7 @@
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 
   /* Shows the push status and id on console log */
-  <script>
-    function getUserInfo() {
+function getUserInfo() {
 	console.log('getUserInfo()');
 	Promise.all([
 		OneSignal.Notifications.permission,
@@ -92,7 +91,8 @@
 			([
 				isSubscribed,
 				subscriptionId,
-		    optedIn,
+				pushToken,
+        optedIn,
 				serviceWorkerActive,
 			]) => {
         console.log('What is the current URL of this page?', location.href);
@@ -105,6 +105,7 @@
         console.log('Are you opted-in, in OneSignal?' , optedIn);
 				console.log('');
 				console.log('What is your OneSignal Subscription ID?', subscriptionId);
+				console.log('What is your Push Token?', pushToken);
 				
 			}
 		)
@@ -113,7 +114,8 @@
 		});
 }
 getUserInfo();
-  </script>
+
+	
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   OneSignalDeferred.push(function(OneSignal) {
